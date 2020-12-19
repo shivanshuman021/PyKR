@@ -1,6 +1,13 @@
 #undirected graph
 import sys
 
+def DFS(T,src):
+	print(src,end=" ")
+
+	for i in range(len(T)):
+		if (T[src][i]):
+			DFS(T,i)
+
 def minval(G,dist,sptSet,src):
 	# finds neighbourhood vertex at min distance
 	minindex,minv = src,sys.maxsize
@@ -12,7 +19,7 @@ def minval(G,dist,sptSet,src):
 	return minindex
 
 
-def dijkastra(G,src):
+def spanningTree(G,src):
 	sptSet = [False for i in range(len(G))]
 	dist = [sys.maxsize for i in range(len(G))]
 	prev = [sys.maxsize for i in range(len(G))]
@@ -31,9 +38,17 @@ def dijkastra(G,src):
 				prev[v] = u
 
 	#print distance
-	print(dist)
+	T = [[False for i in range(len(G))] for i in range(len(G))]
 
-def printGraph(G):
+	for i in range(len(dist)):
+		if i==src:
+			continue
+
+		T[prev[i]][i] = True
+
+	DFS(T,src)
+
+def printGraphMatrix(G):
 	for i in G:
 		for j in i:
 			print(j,end=' ')
@@ -54,8 +69,8 @@ if __name__=="__main__":
 	print("Enter source vertex : ")
 	src = int(input())
 
-	print("Distances from source are : ")
-	dijkastra(G,src)
+	print("spanningTree is : ")
+	spanningTree(G,src)
 
 
 '''
