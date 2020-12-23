@@ -1,6 +1,7 @@
 #undirected graph
 import sys
 
+@functools.lru_cache(maxsize=128)
 def DFS(T,src):
 	print(src,end=" ")
 

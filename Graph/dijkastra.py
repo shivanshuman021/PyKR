@@ -1,5 +1,6 @@
 #undirected graph
 import sys
+import functools
 
 def minval(G,dist,sptSet,src):
 	# finds neighbourhood vertex at min distance
@@ -10,7 +11,6 @@ def minval(G,dist,sptSet,src):
 			minindex,minv = i,dist[i]
 
 	return minindex
-
 
 def dijkastra(G,src):
 	sptSet = [False for i in range(len(G))]
